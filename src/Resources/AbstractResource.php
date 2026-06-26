@@ -2,7 +2,7 @@
 
 namespace TomorrowIdeas\Plaid\Resources;
 
-use http\Client\Request;
+use Nimbly\Capsule\Request;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -123,10 +123,9 @@ abstract class AbstractResource
 	 * @param string $method
 	 * @param string $path
 	 * @param array<array-key,mixed> $params
-	 *
-	 * @return Request
+	 * @return RequestInterface
 	 */
-	protected function buildRequest(string $method, string $path, array $params = []): Request
+	protected function buildRequest(string $method, string $path, array $params = []): RequestInterface
 	{
 		return new Request(
 			$method,
