@@ -7,7 +7,7 @@ use TomorrowIdeas\Plaid\PlaidRequestException;
 class Institutions extends AbstractResource
 {
 	/**
-	 * Get a specific Insitution.
+	 * Get a specific Institution.
 	 *
 	 * @param string $institution_id
 	 * @param array<string> $country_codes
@@ -74,7 +74,7 @@ class Institutions extends AbstractResource
 	{
 		$params = [
 			"query" => $query,
-			"products" => $products ? $products : null,
+			"products" => $products ? : null,
 			"country_codes" => $country_codes,
 			"options" => (object) $options
 		];

@@ -7,6 +7,8 @@ use TomorrowIdeas\Plaid\Entities\PaymentSchedule;
 use TomorrowIdeas\Plaid\Entities\RecipientAddress;
 use TomorrowIdeas\Plaid\PlaidRequestException;
 
+use function is_string;
+
 class Payments extends AbstractResource
 {
 	/**
@@ -28,7 +30,7 @@ class Payments extends AbstractResource
 			$params["address"] = (object) $address->toArray();
 		}
 
-		if( \is_string($account) ){
+		if( is_string($account) ){
 			$params["iban"] = $account;
 		}
 		else {
@@ -43,7 +45,7 @@ class Payments extends AbstractResource
 	}
 
 	/**
-	 * Get a recipient request from a payment inititiation.
+	 * Get a recipient request from a payment initiation.
 	 *
 	 * @param string $recipient_id
 	 * @throws PlaidRequestException

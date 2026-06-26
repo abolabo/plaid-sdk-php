@@ -102,9 +102,10 @@ class Reports extends AbstractResource
 	/**
 	 * Get an Asset report in PDF format.
 	 *
-	 * @param string $report_token
-	 * @throws PlaidRequestException
+	 * @param string $asset_report_token
+	 *
 	 * @return ResponseInterface
+	 * @throws PlaidRequestException
 	 */
 	public function getAssetReportPdf(string $asset_report_token): ResponseInterface
 	{

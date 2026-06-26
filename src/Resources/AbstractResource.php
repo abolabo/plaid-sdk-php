@@ -2,7 +2,7 @@
 
 namespace TomorrowIdeas\Plaid\Resources;
 
-use Capsule\Request;
+use http\Client\Request;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -123,9 +123,10 @@ abstract class AbstractResource
 	 * @param string $method
 	 * @param string $path
 	 * @param array<array-key,mixed> $params
-	 * @return RequestInterface
+	 *
+	 * @return Request
 	 */
-	protected function buildRequest(string $method, string $path, array $params = []): RequestInterface
+	protected function buildRequest(string $method, string $path, array $params = []): Request
 	{
 		return new Request(
 			$method,

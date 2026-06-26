@@ -97,7 +97,9 @@ class Transactions extends AbstractResource
 	 * @param string $access_token
 	 * @param array<string> $account_ids
 	 * @param array<string,mixed> $options
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function recurring(string $access_token, array $account_ids, array $options = []): object
 	{

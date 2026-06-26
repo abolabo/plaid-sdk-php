@@ -2,6 +2,8 @@
 
 namespace TomorrowIdeas\Plaid\Entities;
 
+use function array_filter;
+
 class User
 {
 	/**
@@ -74,7 +76,7 @@ class User
 
 	public function toArray(): array
 	{
-		return \array_filter(
+		return array_filter(
 			[
 				"client_user_id" => $this->id,
 				"legal_name" => $this->name,

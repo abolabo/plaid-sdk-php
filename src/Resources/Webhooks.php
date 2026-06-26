@@ -7,7 +7,7 @@ use TomorrowIdeas\Plaid\PlaidRequestException;
 class Webhooks extends AbstractResource
 {
 	/**
-	 * Get public key corresponding to key id inside webhook request.
+	 * Get a public key corresponding to key id inside the webhook request.
 	 *
 	 * @param string $key_id
 	 * @throws PlaidRequestException

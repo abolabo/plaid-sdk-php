@@ -6,6 +6,8 @@ use DateTime;
 use TomorrowIdeas\Plaid\Entities\AccountHolder;
 use TomorrowIdeas\Plaid\PlaidRequestException;
 
+use function substr;
+
 class BankTransfers extends AbstractResource
 {
 	/**
@@ -20,12 +22,13 @@ class BankTransfers extends AbstractResource
 	 * @param string $currency_code
 	 * @param AccountHolder $account_holder
 	 * @param string $description
-	 * @param string $ach_class
-	 * @param string $custom_tag
+	 * @param string|null $ach_class
+	 * @param string|null $custom_tag
 	 * @param array $metadata
-	 * @param string $origination_account_id
-	 * @throws PlaidRequestException
+	 * @param string|null $origination_account_id
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function create(
 		string $access_token,
@@ -50,7 +53,7 @@ class BankTransfers extends AbstractResource
 			"network" => $network,
 			"amount" => $amount,
 			"iso_currency_code" => $currency_code,
-			"description" => \substr($description, 0, 8),
+			"description" => substr($description, 0, 8),
 			"user" => $account_holder->toArray(),
 			"metadata" => $metadata ? (object) $metadata : null
 		];
@@ -78,7 +81,9 @@ class BankTransfers extends AbstractResource
 	 * Cancel a bank transfer.
 	 *
 	 * @param string $bank_transfer_id
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function cancel(string $bank_transfer_id): object
 	{
@@ -97,7 +102,9 @@ class BankTransfers extends AbstractResource
 	 * Get details about a bank transfer.
 	 *
 	 * @param string $bank_transfer_id
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function get(string $bank_transfer_id): object
 	{
@@ -113,7 +120,7 @@ class BankTransfers extends AbstractResource
 	}
 
 	/**
-	 * Get list of bank transfers.
+	 * Get a list of bank transfers.
 	 *
 	 * @param DateTime|null $start_date
 	 * @param DateTime|null $end_date
@@ -121,7 +128,9 @@ class BankTransfers extends AbstractResource
 	 * @param integer|null $offset
 	 * @param string|null $direction
 	 * @param string|null $origination_account_id
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function list(
 		?DateTime $start_date = null,
@@ -165,7 +174,7 @@ class BankTransfers extends AbstractResource
 	}
 
 	/**
-	 * Get list of bank transfer events.
+	 * Get a list of bank transfer events.
 	 *
 	 * @param DateTime|null $start_date
 	 * @param DateTime|null $end_date
@@ -177,7 +186,9 @@ class BankTransfers extends AbstractResource
 	 * @param integer|null $offset
 	 * @param string|null $direction
 	 * @param string|null $origination_account_id
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function listEvents(
 		?DateTime $start_date = null,
@@ -245,7 +256,9 @@ class BankTransfers extends AbstractResource
 	 *
 	 * @param string $after_id
 	 * @param integer|null $count
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function syncEvents(string $after_id, ?int $count = null): object
 	{
@@ -270,7 +283,9 @@ class BankTransfers extends AbstractResource
 	 * @param string $account_number
 	 * @param string $routing_number
 	 * @param string $account_type
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function migrateAccount(
 		string $account_number,
@@ -294,7 +309,9 @@ class BankTransfers extends AbstractResource
 	 * Get the origination account balance.
 	 *
 	 * @param string|null $origination_account_id
+	 *
 	 * @return object
+	 * @throws PlaidRequestException
 	 */
 	public function getOriginationAccountBalance(string $origination_account_id = null): object
 	{
